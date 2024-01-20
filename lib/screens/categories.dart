@@ -11,7 +11,7 @@ class CategoriesScreen extends StatelessWidget {
 
   final List<Meal> availableMeals;
 
-  void _selectedCategory(BuildContext context, Category category) {
+  void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
@@ -38,12 +38,12 @@ class CategoriesScreen extends StatelessWidget {
         mainAxisSpacing: 20,
       ),
       children: [
-        // alternative to below code: availableCategories.map((category) => CategoryGridItem(category: category)).toList();
+        // availableCategories.map((category) => CategoryGridItem(category: category)).toList()
         for (final category in availableCategories)
           CategoryGridItem(
             category: category,
             onSelectCategory: () {
-              _selectedCategory(context, category);
+              _selectCategory(context, category);
             },
           )
       ],
