@@ -8,6 +8,7 @@ import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
 import 'package:meals/providers/meals_provider.dart';
+import 'package:meals/providers/favourites_provider.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -99,8 +100,10 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     var activePageTitle = 'Pick your category';
 
     if (_selectedPageIndex == 1) {
+      final favouriteMeals = ref.watch(favouritesMealsProvider);
+
       activePage = MealsScreen(
-        meals: _favouriteMeals,
+        meals: favouriteMeals,
         onToggleFavourite: _toggleMealFavouriteStatus,
       );
       activePageTitle = 'Your favourites';
